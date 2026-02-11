@@ -56,7 +56,6 @@ return(
 </button>
 </div>
 
-```
     <label style={{fontSize:11,fontWeight:700,color:T.mt,textTransform:"uppercase",letterSpacing:.8,marginBottom:8,display:"block"}}>🔗 Share invite link</label>
     <div style={{display:"flex",gap:8,marginBottom:8}}>
       <div style={{flex:1,padding:"10px 14px",background:T.bg,borderRadius:10,border:`1.5px solid ${T.bdr}`,fontSize:13,color:T.tx,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{link}</div>
@@ -88,7 +87,6 @@ return(
     </>}
   </div>
 </div>
-```
 
 );
 }
@@ -146,18 +144,18 @@ const allKnown=useMemo(()=>{const m={};days.forEach(d=>d.friends.forEach(f=>{if(
 const stores=useMemo(()=>{if(!day)return{};return day.items.reduce((a,it)=>{const s=it.store||exSt(it.url)||"Unknown";(a[s]=a[s]||[]).push(it);return a},{});},[day]);
 const sc=Object.keys(stores).length;
 
-const createDay=()=>{if(!nd.name.trim()||!me)return;const d={id:`d${Date.now()}`,name:nd.name,by:meId,friends:[{id:meId,name:meName,email:me?.email||""}],items:[]};setDays(p=>[…p,d]);setNd({name:""});setShowNew(false);setDayId(d.id)};
+const createDay=()=>{if(!nd.name.trim()||!me)return;const d={id:`d${Date.now()}`,name:nd.name,by:meId,friends:[{id:meId,name:meName,email:me?.email||""}],items:[]};setDays(p=>[...p,d]);setNd({name:""});setShowNew(false);setDayId(d.id)};
 
-const addFriendToDay=f=>{if(!day||day.friends.some(x=>x.id===f.id))return;setDays(p=>p.map(d=>d.id===dayId?{…d,friends:[…d.friends,f]}:d))};
+const addFriendToDay=f=>{if(!day||day.friends.some(x=>x.id===f.id))return;setDays(p=>p.map(d=>d.id===dayId?{...d,friends:[...d.friends,f]}:d))};
 
-const acceptInvite=inv=>{const newD={id:inv.dayId,name:inv.dayName,by:inv.fromId,friends:[{id:meId,name:meName,email:me?.email||""},{id:inv.fromId,name:inv.fromName,email:""}],items:[]};setDays(p=>[…p,newD]);setPendingInvites(p=>p.filter(i=>i.id!==inv.id))};
+const acceptInvite=inv=>{const newD={id:inv.dayId,name:inv.dayName,by:inv.fromId,friends:[{id:meId,name:meName,email:me?.email||""},{id:inv.fromId,name:inv.fromName,email:""}],items:[]};setDays(p=>[...p,newD]);setPendingInvites(p=>p.filter(i=>i.id!==inv.id))};
 const declineInvite=id=>{setPendingInvites(p=>p.filter(i=>i.id!==id))};
 
-const addItem=useCallback(()=>{if(!day)return;setErr("");let item;if(mode==="url"){if(!ni.url||!isUr(ni.url)){setErr("Enter a valid URL");return}item={id:`i${Date.now()}`,name:"",store:exSt(ni.url)||"",url:ni.url,by:meId,assigned:[]}}else{if(!ni.name.trim()){setErr("Enter an item name");return}if(!ni.store.trim()){setErr("Enter a store");return}item={id:`i${Date.now()}`,name:ni.name,store:ni.store,url:"",by:meId,assigned:[]}}setDays(p=>p.map(d=>d.id===dayId?{…d,items:[…d.items,item]}:d));setNi({name:"",store:"",url:""})},[mode,ni,dayId,day,meId]);
+const addItem=useCallback(()=>{if(!day)return;setErr("");let item;if(mode==="url"){if(!ni.url||!isUr(ni.url)){setErr("Enter a valid URL");return}item={id:`i${Date.now()}`,name:"",store:exSt(ni.url)||"",url:ni.url,by:meId,assigned:[]}}else{if(!ni.name.trim()){setErr("Enter an item name");return}if(!ni.store.trim()){setErr("Enter a store");return}item={id:`i${Date.now()}`,name:ni.name,store:ni.store,url:"",by:meId,assigned:[]}}setDays(p=>p.map(d=>d.id===dayId?{...d,items:[...d.items,item]}:d));setNi({name:"",store:"",url:""})},[mode,ni,dayId,day,meId]);
 
-const removeItem=useCallback(iid=>{if(!day)return;const it=day.items.find(i=>i.id===iid);if(it&&it.by!==meId)return;setDays(p=>p.map(d=>d.id===dayId?{…d,items:d.items.filter(i=>i.id!==iid)}:d))},[dayId,day,meId]);
+const removeItem=useCallback(iid=>{if(!day)return;const it=day.items.find(i=>i.id===iid);if(it&&it.by!==meId)return;setDays(p=>p.map(d=>d.id===dayId?{...d,items:d.items.filter(i=>i.id!==iid)}:d))},[dayId,day,meId]);
 
-const toggleAssign=(iid,fid)=>{setDays(p=>p.map(d=>d.id!==dayId?d:{…d,items:d.items.map(it=>it.id!==iid?it:{…it,assigned:it.assigned.includes(fid)?it.assigned.filter(f=>f!==fid):[…it.assigned,fid]})}))};
+const toggleAssign=(iid,fid)=>{setDays(p=>p.map(d=>d.id!==dayId?d:{...d,items:d.items.map(it=>it.id!==iid?it:{...it,assigned:it.assigned.includes(fid)?it.assigned.filter(f=>f!==fid):[...it.assigned,fid]})}))};
 
 const deleteDay=did=>{setDays(p=>p.filter(d=>d.id!==did));if(dayId===did)setDayId(null)};
 const gf=fid=>day?.friends.find(f=>f.id===fid);
@@ -186,7 +184,7 @@ Mail:()=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="cur
 Bell:()=><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>,
 };
 
-const doLogin=()=>{if(!loginName.trim()||!loginEmail.trim()){setLoginErr("Please enter name and email");return}const u={id:ME_ID,name:loginName.trim(),email:loginEmail.trim()};setMe(u);setDays(p=>p.map(d=>({…d,friends:d.friends.map(f=>f.id===ME_ID?{…f,name:u.name,email:u.email}:f)})))};
+const doLogin=()=>{if(!loginName.trim()||!loginEmail.trim()){setLoginErr("Please enter name and email");return}const u={id:ME_ID,name:loginName.trim(),email:loginEmail.trim()};setMe(u);setDays(p=>p.map(d=>({...d,friends:d.friends.map(f=>f.id===ME_ID?{...f,name:u.name,email:u.email}:f)})))};
 
 /* ═══ LOGIN SCREEN ═══ */
 if(!me)return(
@@ -201,12 +199,12 @@ if(!me)return(
 <div style={{background:T.card,borderRadius:20,padding:28,border:`1px solid ${T.bdr}`,boxShadow:"0 4px 24px rgba(0,0,0,.06)"}}>
 <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Get Started</h2>
 <label style={{fontSize:11,fontWeight:700,color:T.mt,textTransform:"uppercase",letterSpacing:.8,marginBottom:6,display:"block"}}>Your Name</label>
-<input value={loginName} onChange={e=>setLoginName(e.target.value)} placeholder="e.g. Alex" style={{…inp,marginBottom:14}}/>
+<input value={loginName} onChange={e=>setLoginName(e.target.value)} placeholder="e.g. Alex" style={{...inp,marginBottom:14}}/>
 <label style={{fontSize:11,fontWeight:700,color:T.mt,textTransform:"uppercase",letterSpacing:.8,marginBottom:6,display:"block"}}>Email</label>
-<input type="email" value={loginEmail} onChange={e=>setLoginEmail(e.target.value)} placeholder="you@email.com" onKeyDown={e=>e.key==="Enter"&&doLogin()} style={{…inp,marginBottom:6}}/>
+<input type="email" value={loginEmail} onChange={e=>setLoginEmail(e.target.value)} placeholder="you@email.com" onKeyDown={e=>e.key==="Enter"&&doLogin()} style={{...inp,marginBottom:6}}/>
 {loginErr&&<p style={{color:"#D63B15",fontSize:12,marginBottom:8,fontWeight:500}}>{loginErr}</p>}
 <p style={{fontSize:12,color:T.mt,marginBottom:18}}>Your email is used to save trips and receive invites.</p>
-<button onClick={doLogin} style={{…btnP,padding:"13px 20px",boxShadow:"0 2px 12px rgba(232,89,12,.25)"}} onMouseEnter={e=>e.currentTarget.style.background=T.acDk} onMouseLeave={e=>e.currentTarget.style.background=T.accent}>Continue →</button>
+<button onClick={doLogin} style={{...btnP,padding:"13px 20px",boxShadow:"0 2px 12px rgba(232,89,12,.25)"}} onMouseEnter={e=>e.currentTarget.style.background=T.acDk} onMouseLeave={e=>e.currentTarget.style.background=T.accent}>Continue →</button>
 </div>
 <p style={{textAlign:"center",fontSize:12,color:T.mt,marginTop:16}}>No password needed for beta.</p>
 </div>
@@ -231,9 +229,8 @@ if(!dayId)return(
 </div>
 </div>
 </div>
-<div style={{maxWidth:540,margin:"0 auto",padding:"24px 16px 80px"}}>
+    <div style={{maxWidth:540,margin:"0 auto",padding:"24px 16px 80px"}}>
 
-```
     {/* Pending invites */}
     {pendingInvites.length>0&&(
       <div style={{marginBottom:20}}>
@@ -303,7 +300,6 @@ if(!dayId)return(
     )}
   </div>
 </div>
-```
 
 );
 
@@ -313,7 +309,6 @@ return(
 <style>{css}</style>
 {showInvite&&<InvitePanel dayId={day.id} dayName={day.name} currentIds={day.friends.map(f=>f.id)} allFriends={allKnown} onAdd={f=>{addFriendToDay(f);setShowInvite(false)}} onClose={()=>setShowInvite(false)}/>}
 
-```
   {/* Header */}
   <div style={{background:"linear-gradient(135deg,#1A1614,#2C2420)",padding:"14px 16px 0",borderBottom:`3px solid ${T.accent}`}}>
     <div style={{maxWidth:600,margin:"0 auto"}}>
@@ -461,7 +456,6 @@ return(
     </div>}
   </div>
 </div>
-```
 
 );
 }
