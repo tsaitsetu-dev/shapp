@@ -198,6 +198,7 @@ if(!me)return(
 <p style={{color:T.mt,fontSize:15}}>Plan group shopping trips in NYC</p>
 </div>
 <div style={{background:T.card,borderRadius:20,padding:28,border:`1px solid ${T.bdr}`,boxShadow:"0 4px 24px rgba(0,0,0,.06)"}}>
+<p style={{fontSize:20,fontWeight:600,marginBottom:16,textAlign:"center"}}>Hello!</p>
 <h2 style={{fontSize:18,fontWeight:700,marginBottom:20}}>Get Started</h2>
 <label style={{fontSize:11,fontWeight:700,color:T.mt,textTransform:"uppercase",letterSpacing:.8,marginBottom:6,display:"block"}}>Your Name</label>
 <input value={loginName} onChange={e=>setLoginName(e.target.value)} placeholder="e.g. Alex" style={{...inp,marginBottom:14}}/>
