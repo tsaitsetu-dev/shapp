@@ -1,7 +1,7 @@
 'use client';
 
-import SquadShop from '../components/SquadShop';
+import Shapp from '../components/SquadShop';
 
 export default function Home() {
-  return <SquadShop />;
+  return <Shapp />;
 }
