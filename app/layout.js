@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Squad Shop',
+  title: 'Shapp',
   description: 'Plan group shopping trips in NYC',
 };
 
